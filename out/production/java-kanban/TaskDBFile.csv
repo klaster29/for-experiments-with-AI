@@ -1,0 +1,6 @@
+id,type,name,status,description,startTime,duration,endTime,epic
+1,TASK,Task1,NEW,Description task1,16/11/5138:13-46,0,16/11/5138:13-46
+2,EPIC,Epic2,DONE,Description epic2,16/11/5138:13-46,0,16/11/5138:13-46
+3,SUBTASK,Sub Task3,DONE,Description sub task3,16/11/5138:13-46,0,16/11/5138:13-46,2
+
+2,3

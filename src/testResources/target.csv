@@ -1,0 +1,6 @@
+id,type,name,status,description,startTime,duration,endTime,epic
+1,TASK,Task1,NEW,Description task1,null,0,null
+2,EPIC,Epic2,DONE,Description epic2,null,0,null
+3,SUBTASK,Sub Task3,DONE,Description sub task3,null,0,null,2
+
+2,3
