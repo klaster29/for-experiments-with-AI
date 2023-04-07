@@ -91,7 +91,6 @@ class FileBackedTaskManagerTest extends InMemoryTaskManagerTest {
 
     @Test
     void testLoadFromFileMustGiveAbilityToAppendTasksAfterDownloadingFromAFile() {
-        TaskManager preparedManager = new FileBackedTaskManager(secondTargetFilePath.toFile());
 
         manager = FileBackedTaskManager.loadFromFile(resultFilePath.toFile());
         manager.addTask(new Task("Task2", TaskStatus.NEW, "Description task2"));
@@ -135,7 +134,7 @@ class FileBackedTaskManagerTest extends InMemoryTaskManagerTest {
     }
 
     @Test
-    void testLoadFromFileMustThrowTaskInterSectionExceptionException() {
+    void testLoadFromFileMustThrowTaskInterSectionException() {
         Assertions.assertThrows(TaskIntersectionException.class,
                 () -> FileBackedTaskManager.loadFromFile(fileContainsCrossroadsTasks.toFile()));
     }
