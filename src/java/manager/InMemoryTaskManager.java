@@ -96,6 +96,7 @@ public class InMemoryTaskManager implements TaskManager {
         subtask.setId(getIdForNewTask());
         subtasks.put(subtask.getId(), subtask);
         epics.get(subtask.getEpicId()).addSubtask(subtask.getId());
+        sortedTaskSet.add(subtask);
         calculateEpicTimes(subtask.getEpicId());
         addSubtaskAndUpdateHisEpic(subtask);
     }
@@ -132,6 +133,7 @@ public class InMemoryTaskManager implements TaskManager {
         if (subtasks.containsKey(subtaskId)) {
             subtasks.put(subtaskId, subtask);
             addToSortedTaskSet(subtask);
+            sortedTaskSet.add(subtask);
         }
         epics.get(epicId).addSubtask(subtaskId);
         calculateEpicTimes(epicId);
@@ -150,7 +152,7 @@ public class InMemoryTaskManager implements TaskManager {
         Epic epic = epics.get(epicId);
         sortedTaskSet.remove(epic);
         sortedTaskSet.stream()
-                .filter(task -> task.getType() == TaskType.SUBTASK)
+                .filter(task -> task.getType().equals(TaskType.SUBTASK))
                 .filter(subtask -> ((Subtask) subtask).getEpicId() == epicId)
                 .forEach(task -> sortedTaskSet.remove(epic));
 
