@@ -42,7 +42,7 @@ class FileBackedTaskManagerTest extends InMemoryTaskManagerTest {
     @BeforeEach
     @Override
     public void setup() {
-        manager = new FileBackedTaskManager(resultFilePath.toFile());
+        manager = new FileBackedTaskManager(resultFilePath.toString());
     }
 
     @Test
@@ -71,7 +71,7 @@ class FileBackedTaskManagerTest extends InMemoryTaskManagerTest {
     @Test
     void testLoadFromFileMustLoadTasksCorrectly() {
         manager = FileBackedTaskManager.loadFromFile(targetFilePath.toFile());
-        TaskManager expectedManager = new FileBackedTaskManager(resultFilePath.toFile());
+        TaskManager expectedManager = new FileBackedTaskManager(resultFilePath.toString());
         addDifferentTasksToManager(expectedManager);
 
         Assertions.assertEquals(manager.getTasks().size(), expectedManager.getTasks().size());
@@ -104,7 +104,7 @@ class FileBackedTaskManagerTest extends InMemoryTaskManagerTest {
 
     @Test
     void testSaveMustWriteTheCorrectDataToAFile() {
-        manager = new FileBackedTaskManager(resultFilePath.toFile());
+        manager = new FileBackedTaskManager(resultFilePath.toString());
         addDifferentTasksToManager(manager);
 
         try {
@@ -116,7 +116,7 @@ class FileBackedTaskManagerTest extends InMemoryTaskManagerTest {
 
     @Test
     void testSaveMustConsistsOnlyHeader() {
-        manager = new FileBackedTaskManager(resultFilePath.toFile());
+        manager = new FileBackedTaskManager(resultFilePath.toString());
         manager.addTask(new Task());
         manager.deleteTasks();
 

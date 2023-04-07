@@ -16,14 +16,14 @@ public class FileBackedTaskManager extends InMemoryTaskManager {
 
     private final static String FILE_HEADER = "id,type,name,status,description,startTime,duration,endTime,epic";
 
-    public FileBackedTaskManager(File taskDBFile) {
+    public FileBackedTaskManager(String taskDBFile) {
         super();
-        this.taskDBFile = taskDBFile;
+        this.taskDBFile = new File(taskDBFile);
     }
 
     public static FileBackedTaskManager loadFromFile(File file) throws RuntimeException {
 
-        FileBackedTaskManager manager = new FileBackedTaskManager(file);
+        FileBackedTaskManager manager = new FileBackedTaskManager(file.getPath());
         if (file.length() < FILE_HEADER.length()) {
             return manager;
         }
