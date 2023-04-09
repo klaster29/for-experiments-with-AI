@@ -7,8 +7,8 @@ class ManagersTest {
 
     @Test
     void testGetDefault() {
-        TaskManager manager = Managers.getDefault();
-        Assertions.assertTrue(manager instanceof InMemoryTaskManager);
+        TaskManager manager = Managers.getDefault("http://localhost:8080/tasks/task");
+        Assertions.assertTrue(manager instanceof HttpTaskManager);
     }
 
     @Test

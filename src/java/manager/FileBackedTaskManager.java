@@ -3,6 +3,7 @@ package manager;
 import task.*;
 
 import java.io.*;
+import java.net.URI;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -12,14 +13,16 @@ import java.util.*;
 
 public class FileBackedTaskManager extends InMemoryTaskManager {
 
-    private final File taskDBFile;
+    private File taskDBFile;
 
     private final static String FILE_HEADER = "id,type,name,status,description,startTime,duration,endTime,epic";
 
     public FileBackedTaskManager(String taskDBFile) {
         super();
-        this.taskDBFile = new File(taskDBFile);
+        this.taskDBFile = Path.of(URI.create(taskDBFile)).toFile();
     }
+
+    public FileBackedTaskManager() {}
 
     public static FileBackedTaskManager loadFromFile(File file) throws RuntimeException {
 
